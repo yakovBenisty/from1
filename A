@@ -1,0 +1,62 @@
+<script>window.enableEventObserver=true</script>
+<!--[if lt IE 9]>
+<script src="https://cdn02.jotfor.ms/js/vendor/flashcanvas.js?v=3.3.61054" type="text/javascript"></script>
+<![endif]-->
+<script src="https://cdn03.jotfor.ms/js/vendor/jquery-3.7.1.min.js?v=3.3.61054" type="text/javascript"></script>
+<script src="https://cdn01.jotfor.ms/js/vendor/jSignature/jSignature.js?v=3.3.61054" type="text/javascript"></script>
+<script src="https://cdn02.jotfor.ms/js/vendor/jSignature/jSignature.CompressorBase30.js?v=3.3.61054" type="text/javascript"></script>
+<script src="https://cdn03.jotfor.ms/js/vendor/jSignature/jSignature.CompressorSVG.js?v=3.3.61054" type="text/javascript"></script>
+<script src="https://cdn01.jotfor.ms/js/vendor/jSignature/jSignature.UndoButton.js?v=3.3.61054" type="text/javascript"></script>
+<script src="https://cdn02.jotfor.ms/js/vendor/jotform.signaturepad.new.js?v=3.3.61054" type="text/javascript"></script>
+<script src="https://cdn03.jotfor.ms/static/prototype.forms.js?v=3.3.61054" type="text/javascript"></script>
+<script src="https://cdn01.jotfor.ms/static/jotform.forms.js?v=3.3.61054" type="text/javascript"></script>
+<script>
+function isValidIsraeliID(id) {
+    id = id.replace(/\D/g, "");
+    if (id.length !== 9) return false;
+    let sum = 0;
+    for (let i = 0; i < 9; i++) {
+        let num = Number(id[i]) * (i % 2 === 0 ? 1 : 2);
+        sum += num > 9 ? num - 9 : num;
+    }
+    return sum % 10 === 0;
+}
+function validateIDField(fieldId) {
+    const field = document.getElementById(fieldId);
+    field.addEventListener('blur', () => {
+        const value = field.value;
+        if (!isValidIsraeliID(value)) {
+            alert('מספר הזהות שהוזן אינו תקין. יש להזין מספר זהות ישראלי בן 9 ספרות עם ספרת ביקורת תקינה.');
+            field.value = '';
+            field.focus();
+        }
+    });
+}
+document.addEventListener('DOMContentLoaded', () => {
+    validateIDField('input_6');
+    validateIDField('input_73');
+    validateIDField('input_76');
+});
+</script>
+<link type="text/css" rel="stylesheet" href="https://cdn01.jotfor.ms/stylebuilder/static/form-common.css?v=10195a0"/>
+<form class="jotform-form" action="https://submit.jotform.com/submit/250473464771057" method="post" name="form_250473464771057" id="250473464771057" accept-charset="utf-8" autocomplete="on">
+  <div role="main" class="form-all">
+    <ul class="form-section page-section" role="presentation">
+      <li class="form-line jf-required" id="id_6">
+        <label class="form-label">מספר זהות<span class="form-required">*</span></label>
+        <input type="text" id="input_6" name="q6_input6" required />
+      </li>
+      <li class="form-line" id="id_73">
+        <label class="form-label">תז בן זוג</label>
+        <input type="text" id="input_73" name="q73_input73" />
+      </li>
+      <li class="form-line jf-required" id="id_76">
+        <label class="form-label">תז משלם<span class="form-required">*</span></label>
+        <input type="text" id="input_76" name="q76_input76" required />
+      </li>
+      <li class="form-line" id="id_submit">
+        <button type="submit" class="form-submit-button">לְהַגִישׁ</button>
+      </li>
+    </ul>
+  </div>
+</form>
